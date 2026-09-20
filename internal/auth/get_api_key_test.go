@@ -32,8 +32,8 @@ func TestGetAPIKeyValid(t *testing.T) {
 	header := make(http.Header)
 
 	header.Set("Authorization", "ApiKey super-secret-key")
-	res, err := auth.GetAPIKey(header)
+	res, _ := auth.GetAPIKey(header)
 
 	assert.Equal(t, "super-secret-key", res)
-	assert.Equal(t, err, err)
+	assert.Equal(t, nil, auth.ErrNoAuthHeaderIncluded)
 }
